@@ -1,0 +1,25 @@
+ public static void PerformActionEveryTwoMinutes()
+    {
+        while (true)
+        {
+            // взяти центр екрану
+            int screenWidth = System.Windows.Forms.Screen.PrimaryScreen.Bounds.Width;
+            int screenHeight = System.Windows.Forms.Screen.PrimaryScreen.Bounds.Height;
+            int centerX = screenWidth / 2;
+            int centerY = screenHeight / 2;
+
+            // переемістити курсор
+            SetCursorPos(centerX, centerY);
+
+            // лівий клік миші
+            mouse_event(MOUSEEVENTF_LEFTDOWN, centerX, centerY, 0, 0);
+            mouse_event(MOUSEEVENTF_LEFTUP, centerX, centerY, 0, 0);
+
+            // натиск кнопки enter
+            keybd_event(VK_ENTER, 0, 0, 0);
+            keybd_event(VK_ENTER, 0, KEYEVENTF_KEYUP, 0);
+
+            // очікування 2 хв
+            Thread.Sleep(120000); // 120000 ms = 2 minutes
+        }
+    }
